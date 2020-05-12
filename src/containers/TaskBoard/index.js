@@ -7,32 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import { STATUSES } from '../../constants';
 import TaskList from './../../components/TaskList/index';
 import TaskForm from '../../components/TaskForm';
-
-const listTask = [
-  {
-    id: 1,
-    title: 'Game',
-    description: 'lol',
-    status: 0
-  },
-  {
-    id: 2,
-    title: 'Play ball',
-    description: 'lol',
-    status: 1
-  },
-  {
-    id: 3,
-    title: 'Film',
-    description: 'lol',
-    status: 1
-  },{
-    id: 4,
-    title: 'ascasc',
-    description: 'lol',
-    status: 2
-  }
-]
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as taskActions from './../../actions/task';
+import PropsType from 'prop-types';
 
 class TaskBoard extends Component {
 
@@ -40,7 +18,14 @@ class TaskBoard extends Component {
     open : false
   }
 
+  componentDidMount() {
+    const { taskActionsCreators } = this.props;
+    const { fetchListTaskRequest } = taskActionsCreators;
+    fetchListTaskRequest()
+  }
+
   renderBoard(){
+    const {listTask} = this.props;
     let xhtml = null;
     xhtml = (
       <Grid container spacing={2}>
@@ -93,4 +78,27 @@ class TaskBoard extends Component {
   }
 }
 
-export default withStyles(styles)(TaskBoard);
+TaskBoard.PropsType = {
+  classes: PropsType.object,
+  taskActionsCreators: PropsType.shape({
+    fetchListTaskRquest: PropsType.func,
+  }),
+  listTask: PropsType.array
+}
+
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    listTask: state.task.listTask
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    taskActionsCreators: bindActionCreators(taskActions, dispatch)
+  }
+}
+
+
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(TaskBoard));
