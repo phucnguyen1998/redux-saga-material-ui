@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import * as taskActions from './../../actions/task';
 import PropsType from 'prop-types';
 
+
 class TaskBoard extends Component {
 
   state = {
@@ -69,7 +70,6 @@ class TaskBoard extends Component {
         <Button onClick={this.openForm} variant="contained" color="primary" className={classes.button}>
           <AddIcon/> Thêm mới công việc
         </Button>
-
         {this.renderBoard()}
 
         {this.renderForm()}
