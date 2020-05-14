@@ -1,16 +1,37 @@
-import { fork,take,call } from 'redux-saga/effects';
+import { fork,take,call,put } from 'redux-saga/effects';
 import * as taskType from './../constants/task';
 import { getList } from './../apis/task';
+import { STATUS_CODE } from './../constants/index';
+import { fetchListTaskSuccess, fetchListTaskFailed } from '../actions/task';
+
+/**
+ * B1: lang nghe FETCH_TASK
+ * B2: goi api
+ *  B2.1: Hien thi loading
+ * B3: Kiem tra status code 
+ * Neu thanh cong thi dispatch action fetchListTaskSuccess
+ * Neu that bai thi dispatch action fetchListTaskFailed
+ * B4: tat loading
+ * B5: Thuc hien cong viec tiep theo
+ */
 
 function* watchFetchListTaskAction() {
-  yield take(taskType.FETCH_TASK);
-  console.log('watching fetch task action');
-  
-  let res = yield call(getList);
-  console.log('response', res);  
+  while(true){
+    yield take(taskType.FETCH_TASK);
+    let res = yield call(getList);
+    const {status, data} = res;
+    if(status === STATUS_CODE.SUCSESS){
+      // dispatch action fetchListTaskSuccess
+      yield put(fetchListTaskSuccess(data))
+    }else{
+      // dispatch action fetchListTaskFailed
+      yield put(fetchListTaskFailed(data))
+    }
+  }
 }
 
 function* watchCreateTaskAction() {
+  yield true;
   console.log('watching create task action');
 }
 

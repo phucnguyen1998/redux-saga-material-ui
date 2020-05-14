@@ -19,13 +19,13 @@ class TaskBoard extends Component {
     open : false
   }
 
-  componentDidMount() {
-    const { taskActionsCreators } = this.props;
-    // const { fetchListTaskRequest } = taskActionsCreators;
-    // fetchListTaskRequest()
-    const { fetchListTask } = taskActionsCreators;
-    fetchListTask()
-  }
+  // componentDidMount() {
+  //   const { taskActionsCreators } = this.props;
+  //   // const { fetchListTaskRequest } = taskActionsCreators;
+  //   // fetchListTaskRequest()
+  //   const { fetchListTask } = taskActionsCreators;
+  //   fetchListTask()
+  // }
 
   renderBoard(){
     const {listTask} = this.props;
@@ -64,11 +64,20 @@ class TaskBoard extends Component {
     )
     return xhtml;
   }
+  loadData = () => {
+    const { taskActionsCreators } = this.props;
+    const { fetchListTask } = taskActionsCreators;
+    fetchListTask()
+  }
 
   render() {
     const {classes} = this.props;
     return (
        <div className={classes.baskboard}>
+        <Button onClick={this.loadData} variant="contained" color="primary" className={classes.button}>
+          Load data
+        </Button>
+
         <Button onClick={this.openForm} variant="contained" color="primary" className={classes.button}>
           <AddIcon/> Thêm mới công việc
         </Button>
