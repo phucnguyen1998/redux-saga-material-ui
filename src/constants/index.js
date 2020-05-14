@@ -14,3 +14,9 @@ export const STATUSES = [
     value: 2,
   }
 ]
+
+export const STATUS_CODE = {
+  SUCSESS: 200, 
+  CREATED: 201,
+  UPDATED: 202
+}

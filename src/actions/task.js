@@ -32,14 +32,14 @@ export const fetchListTaskFailed = (error) => {
  * B4: fetchListTaskFailed(data error)
  */
 
-export const fetchListTaskRequest = () => {
-  return dispatch => {
-    dispatch(fetchListTask()); // B2 
-    taskApis.getList().then((res) => {
-      dispatch(fetchListTaskSuccess(res.data));
-    }).catch((err) => {
-      dispatch(fetchListTaskSuccess(err))
-    })
-  }
-}
+// export const fetchListTaskRequest = () => {
+//   return dispatch => {
+//     dispatch(fetchListTask()); // B2 
+//     taskApis.getList().then((res) => {
+//       dispatch(fetchListTaskSuccess(res.data));
+//     }).catch((err) => {
+//       dispatch(fetchListTaskSuccess(err))
+//     })
+//   }
+// }
 
