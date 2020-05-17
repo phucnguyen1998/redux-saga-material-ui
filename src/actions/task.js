@@ -25,21 +25,16 @@ export const fetchListTaskFailed = (error) => {
   }
 }
 
-/**
- * B1: goi fetchListTaskRequest();
- * B2: reset state tasks => [];
- * B3: fetchListTaskSuccess(data response)
- * B4: fetchListTaskFailed(data error)
- */
+export const filterTask = (keyword) => ({
+  type: taskConstants.FILTER_TASK,
+  payload:{
+    keyword
+  }
+});
 
-// export const fetchListTaskRequest = () => {
-//   return dispatch => {
-//     dispatch(fetchListTask()); // B2 
-//     taskApis.getList().then((res) => {
-//       dispatch(fetchListTaskSuccess(res.data));
-//     }).catch((err) => {
-//       dispatch(fetchListTaskSuccess(err))
-//     })
-//   }
-// }
-
+export const filterTaskSuccess = (data) => ({
+  type: taskConstants.FILTER_TASK_SUCCESS,
+  payload:{
+    data
+  }
+});

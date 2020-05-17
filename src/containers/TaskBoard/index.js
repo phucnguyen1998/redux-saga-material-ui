@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as taskActions from './../../actions/task';
 import PropsType from 'prop-types';
+import SearchBox from '../../components/SearchBox';
 
 
 class TaskBoard extends Component {
@@ -64,6 +65,22 @@ class TaskBoard extends Component {
     )
     return xhtml;
   }
+
+  handleFilter = (e) => {
+    //console.log(e);
+    const {value} = e.target;
+    const { taskActionsCreators } = this.props;
+    const { filterTask } = taskActionsCreators; 
+    filterTask(value);
+  }
+
+  renderSearchBox(){
+    // data on state
+    let xhtml = null; 
+    xhtml = <SearchBox handleChange={this.handleFilter}/>
+    return xhtml;
+  }
+
   loadData = () => {
     const { taskActionsCreators } = this.props;
     const { fetchListTask } = taskActionsCreators;
@@ -81,8 +98,8 @@ class TaskBoard extends Component {
         <Button onClick={this.openForm} variant="contained" color="primary" className={classes.button}>
           <AddIcon/> Thêm mới công việc
         </Button>
+        {this.renderSearchBox()}
         {this.renderBoard()}
-
         {this.renderForm()}
        </div>
     );
@@ -93,6 +110,7 @@ TaskBoard.PropsType = {
   classes: PropsType.object,
   taskActionsCreators: PropsType.shape({
     fetchListTask: PropsType.func,
+    filterTask: PropsType.func
   }),
   listTask: PropsType.array
 }

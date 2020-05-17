@@ -15,6 +15,10 @@ const reducer = (state = InitialState, action) => {
       const {error} = action.payload;
       toastError(error);
       return {...state, listTask: []};
+    case taskConstants.FILTER_TASK_SUCCESS: 
+      // const {data} = action.payload;
+      console.log(action.payload.data);
+      return {...state, listTask: action.payload.data}
     default:
       return state
   }
