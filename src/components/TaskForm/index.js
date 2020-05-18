@@ -1,41 +1,55 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from './style';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { Modal, Grid, Box } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 
 class TaskForm extends Component {
 	render() {
-		let { open,onClose } = this.props; 
+		let { open,onClose,classes } = this.props; 
 		return (
-			<Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Thêm mới công việc</DialogTitle>
-        <DialogContent>
-					<TextField id="standard-basic" label="Standard" />
-
-					<TextField
-						id="standard-multiline-flexible"
-						label="Multiline"
-						multiline
-						rowsMax={4}
-					/>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={onClose} color="primary">
-            Ok
-          </Button>
-          <Button onClick={onClose} color="primary">
-            Cancel
-          </Button>
-        </DialogActions>
-      </Dialog>
+			<Modal open={open} onClose={onClose}>
+				<div className={classes.modal}>
+					<form>
+						<Grid container spacing={5}>
+							<Grid item md={12}>
+								<TextField id="standard-basic" label="Tiêu đề" className={classes.textField}/>
+							</Grid>
+							<Grid item md={12}>
+								<TextField
+									className={classes.textField}
+									id="standard-multiline-flexible"
+									label="Mô tả"
+									multiline
+									rowsMax={4}
+								/>
+							</Grid>
+							<Grid item md={12}>
+								<Box display="flex" flexDirection="row-reverse">
+									<Button color="primary">
+										Lưu Lại
+									</Button>
+									<Button onClick={onClose}>
+										Hủy
+									</Button>
+								</Box>
+							</Grid>
+						</Grid>
+					</form>
+				</div>
+			</Modal>
 		);
 	}
+}
+
+TaskForm.propTypes = {
+	open: PropTypes.bool,
+	onClose: PropTypes.func,
+	classes: PropTypes.object
+	
 }
 
 export default withStyles(styles)(TaskForm);

@@ -20,13 +20,11 @@ class TaskBoard extends Component {
     open : false
   }
 
-  // componentDidMount() {
-  //   const { taskActionsCreators } = this.props;
-  //   // const { fetchListTaskRequest } = taskActionsCreators;
-  //   // fetchListTaskRequest()
-  //   const { fetchListTask } = taskActionsCreators;
-  //   fetchListTask()
-  // }
+  componentDidMount() {
+    const { taskActionsCreators } = this.props;
+    const { fetchListTask } = taskActionsCreators;
+    fetchListTask()
+  }
 
   renderBoard(){
     const {listTask} = this.props;
@@ -95,7 +93,12 @@ class TaskBoard extends Component {
           Load data
         </Button>
 
-        <Button onClick={this.openForm} variant="contained" color="primary" className={classes.button}>
+        <Button 
+          onClick={this.openForm} 
+          variant="contained" 
+          color="primary" 
+          className={classes.button}
+        >
           <AddIcon/> Thêm mới công việc
         </Button>
         {this.renderSearchBox()}
