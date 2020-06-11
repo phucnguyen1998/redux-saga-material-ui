@@ -10,7 +10,7 @@ const reducer = (state = InitialState, action) => {
       case types.SHOW_MODAL: 
         return {...state, showModal: true};
       case types.HIDE_MODAL: 
-        return {...state, showModal: false};
+        return {...state, showModal: false, title:'', component: null};
       case types.CHANGE_MODAL_TITLE:
         const {title} = action.payload;
         return {...state, title: title};
