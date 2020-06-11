@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from './style';
+import CloseIcon from '@material-ui/icons/Clear';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Modal, Grid, Box } from '@material-ui/core';
@@ -13,6 +14,12 @@ class TaskForm extends Component {
 		return (
 			<Modal open={open} onClose={onClose}>
 				<div className={classes.modal}>
+					<div className={classes.header}>
+						<span className={classes.title}>
+							Thêm mới
+						</span>
+						<CloseIcon onClick={onClose} className={classes.icon}/>
+					</div>
 					<form>
 						<Grid container spacing={5}>
 							<Grid item md={12}>

@@ -13,7 +13,7 @@ const composeEnhancers =
       }) 
     : compose;
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware(); // tao saga 
 
 const configStore = () => {
   const middlewares = [

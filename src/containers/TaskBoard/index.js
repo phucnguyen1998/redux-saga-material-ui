@@ -10,6 +10,7 @@ import TaskForm from '../../components/TaskForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as taskActions from './../../actions/task';
+import * as modalActions from './../../actions/modal';
 import PropsType from 'prop-types';
 import SearchBox from '../../components/SearchBox';
 
@@ -50,9 +51,10 @@ class TaskBoard extends Component {
   }
 
   openForm = () => {
-    this.setState({
-      open: true,
-    });
+    const { modalActionCreators } = this.props;
+    const { showModal, changeModalTitle, changeModalContent } = modalActionCreators;
+    showModal();
+    changeModalTitle('Thêm mới công việc');
   }
 
   renderForm(){
@@ -115,6 +117,12 @@ TaskBoard.PropsType = {
     fetchListTask: PropsType.func,
     filterTask: PropsType.func
   }),
+  modalActions: PropsType.shape({
+    showModal: PropsType.func,
+    hideModal: PropsType.func,
+    changeModalTitle: PropsType.func,
+    changeModalContent: PropsType.func
+  }),
   listTask: PropsType.array
 }
 
@@ -127,7 +135,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    taskActionsCreators: bindActionCreators(taskActions, dispatch)
+    taskActionsCreators: bindActionCreators(taskActions, dispatch),
+    modalActionCreators: bindActionCreators(modalActions, dispatch)
   }
 }
 

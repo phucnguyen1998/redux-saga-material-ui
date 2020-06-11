@@ -10,8 +10,8 @@ import {showLoading,hideLoading} from './../actions/UI';
  * B2: goi api
  *  B2.1: Hien thi loading
  * B3: Kiem tra status code 
- * Neu thanh cong thi dispatch action fetchListTaskSuccess
- * Neu that bai thi dispatch action fetchListTaskFailed
+ *  Neu thanh cong thi dispatch action fetchListTaskSuccess
+ *  Neu that bai thi dispatch action fetchListTaskFailed
  * B4: tat loading
  * B5: Thuc hien cong viec tiep theo
  */
