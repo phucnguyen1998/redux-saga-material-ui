@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid'; 
 import { STATUSES } from '../../constants';
 import TaskList from './../../components/TaskList/index';
-import TaskForm from '../../components/TaskForm';
+import TaskForm from '../TaskForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as taskActions from './../../actions/task';
@@ -55,6 +55,7 @@ class TaskBoard extends Component {
     const { showModal, changeModalTitle, changeModalContent } = modalActionCreators;
     showModal();
     changeModalTitle('Thêm mới công việc');
+    changeModalContent(<TaskForm/>)
   }
 
   renderForm(){
