@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';
 import * as modalActions from './../../actions/modal';
 import { Field, reduxForm } from 'redux-form';
-import renderTextField from './../../components/FormHelper/TextFiled'
+import renderTextField from './../../components/FormHelper/TextFiled';
+import validate from './validate';
 
 
 class TaskForm extends Component {
@@ -18,8 +19,26 @@ class TaskForm extends Component {
 		console.log('data', data);
 	}
 
+	// required = (value) => {
+	// 	let error = 'Vui lòng nhập đủ thông tin!';
+	// 	if(value !== null && typeof value !== 'undefined' && value.trim() !== ''){
+	// 		error = null;
+	// 	}
+	// 	return error;
+	// }
+
+	// minlength = value => {
+	// 	let error = null;
+	// 	if(value.length < 5 ){
+	// 		error = 'Tiêu đề phải từ 5 ký tự trở lên.'
+	// 	}
+	// 	return error;
+	// }
+
 	render() {
-		let { classes,modalActionCreators,handleSubmit } = this.props; 
+		//console.log('this.props', this.props);
+		
+		let { classes, modalActionCreators, handleSubmit, invalid, submitting	 } = this.props; 
 		const { hideModal } = modalActionCreators;
 		return (
 			<form onSubmit = {handleSubmit(this.handleSubmitForm)}>
@@ -31,6 +50,7 @@ class TaskForm extends Component {
 							className={classes.textField}
 							name= "title"
 							component={renderTextField}
+							// validate={[this.required, this.minlength,]}
 						/>
 					</Grid>
 					<Grid item md={12}>
@@ -45,7 +65,7 @@ class TaskForm extends Component {
 					</Grid>
 					<Grid item md={12}>
 						<Box display="flex" flexDirection="row-reverse">
-							<Button color="primary" type="submit">
+							<Button disabled={invalid || submitting} color="primary" type="submit">
 								Lưu Lại
 							</Button>
 							<Button onClick={hideModal}>
@@ -76,7 +96,8 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const FORM_NAME = 'TASK_MANAGEMENT';
 
 const withReduxFrom = reduxForm({
-	form: FORM_NAME
+	form: FORM_NAME,
+	validate
 })
 
 export default compose(
