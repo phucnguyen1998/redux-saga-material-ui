@@ -1,4 +1,4 @@
-import { fork,take,call,put,delay,takeLatest,select,takeEvery } from 'redux-saga/effects';
+import { fork,take,call,put,delay,takeLatest,select } from 'redux-saga/effects';
 import * as taskType from './../constants/task';
 import { getList } from './../apis/task';
 import { STATUS_CODE } from './../constants/index';

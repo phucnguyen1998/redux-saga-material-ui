@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from './style';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import { Grid, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';
 import * as modalActions from './../../actions/modal';
 import { Field, reduxForm } from 'redux-form';
+import renderTextField from './../../components/FormHelper/TextFiled'
 
 
 class TaskForm extends Component {
@@ -25,20 +26,21 @@ class TaskForm extends Component {
 				<Grid container spacing={5}>
 					<Grid item md={12}>
 						<Field
+							id="title"
+							label= "Tiêu đề"
+							className={classes.textField}
 							name= "title"
-							component= "input"
+							component={renderTextField}
 						/>
 					</Grid>
 					<Grid item md={12}>
-						<TextField id="standard-basic" label="Tiêu đề" className={classes.textField}/>
-					</Grid>
-					<Grid item md={12}>
-						<TextField
+						<Field
+							id="Description"
+							label= "Mô tả"
 							className={classes.textField}
-							id="standard-multiline-flexible"
-							label="Mô tả"
+							name= "description"
 							multiline
-							rowsMax={4}
+							component={renderTextField}
 						/>
 					</Grid>
 					<Grid item md={12}>
@@ -65,9 +67,9 @@ TaskForm.propTypes = {
 
 const mapStateToProps = null;
   
-  const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
 	modalActionCreators: bindActionCreators(modalActions, dispatch)
-  })
+})
   
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 

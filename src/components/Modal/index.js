@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles,Modal } from '@material-ui/core';
 import styles from './style';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import CloseIcon from '@material-ui/icons/Clear';
 import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';

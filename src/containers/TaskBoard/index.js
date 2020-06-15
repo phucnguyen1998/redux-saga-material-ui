@@ -58,14 +58,14 @@ class TaskBoard extends Component {
     changeModalContent(<TaskForm/>)
   }
 
-  renderForm(){
-    let { open } = this.state;
-    let xhtml = null;
-    xhtml = (
-      <TaskForm onClose={this.handleClose} open={open}/>
-    )
-    return xhtml;
-  }
+  // renderForm(){
+  //   let { open } = this.state;
+  //   let xhtml = null;
+  //   xhtml = (
+  //     <TaskForm onClose={this.handleClose} open={open}/>
+  //   )
+  //   return xhtml;
+  // }
 
   handleFilter = (e) => {
     //console.log(e);
@@ -82,20 +82,10 @@ class TaskBoard extends Component {
     return xhtml;
   }
 
-  loadData = () => {
-    const { taskActionsCreators } = this.props;
-    const { fetchListTask } = taskActionsCreators;
-    fetchListTask()
-  }
-
   render() {
     const {classes} = this.props;
     return (
        <div className={classes.baskboard}>
-        <Button onClick={this.loadData} variant="contained" color="primary" className={classes.button}>
-          Load data
-        </Button>
-
         <Button 
           onClick={this.openForm} 
           variant="contained" 
@@ -106,7 +96,7 @@ class TaskBoard extends Component {
         </Button>
         {this.renderSearchBox()}
         {this.renderBoard()}
-        {this.renderForm()}
+        {/* {this.renderForm()} */}
        </div>
     );
   }
