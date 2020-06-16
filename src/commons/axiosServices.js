@@ -17,8 +17,14 @@ class AxiosServices {
     return Promise.reject(error);
   }
 
+  //GET
   get(url){
     return this.instance.get(url)
+  }
+
+  //POST
+  post(url,body){
+    return this.instance.post(url,body);
   }
 }
 

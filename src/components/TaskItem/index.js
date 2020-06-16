@@ -13,7 +13,7 @@ class TaskItem extends Component {
 	render() {
 		let { task,index,status,classes } = this.props; 
 		return (
-			<Card key={index}>
+			<Card key={index} className={classes.card}>
 				<CardContent>
 					<Grid container justify="space-between">
 						<Grid item md={8}>
